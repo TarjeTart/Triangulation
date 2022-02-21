@@ -13,7 +13,7 @@ public class Edge {
 	}
 	
 	public void printEdge() {
-		System.out.println(label + " = (" + start.getVertex() + ":" + end.getVertex() + ")");
+		System.out.println(toString());
 	}
 	
 	public Vertex[] getEdge() {
@@ -33,10 +33,25 @@ public class Edge {
 		return end;
 	}
 	
-	public static boolean areEqual(Edge a, Edge b) {
-		return (a.getStart().equals(b.getStart()) 
-				&& a.getEnd().equals(b.getEnd()) 
+	public boolean vertexEqual(Edge a) {
+		return this.start.softEquals(a.getStart()) && this.end.softEquals(a.getEnd());
+	}
+	
+	public static boolean softEqual(Edge a, Edge b) {
+		return (a.getStart().softEquals(b.getStart()) 
+				&& a.getEnd().softEquals(b.getEnd()) 
 				&& a.getLabel().contentEquals(b.getLabel()));
+	}
+	
+	public static boolean hardEqual(Edge a, Edge b) {
+		return (a.getStart().hardEquals(b.getStart()) 
+				&& a.getEnd().hardEquals(b.getEnd()) 
+				&& a.getLabel().contentEquals(b.getLabel()));
+	}
+	
+	@Override
+	public String toString() {
+		return label + " = (" + start.getVertex() + ":" + end.getVertex() + ")";
 	}
 	
 }
