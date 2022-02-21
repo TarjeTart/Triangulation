@@ -12,7 +12,7 @@ public class Vertex {
 	}
 
 	public void printVertex() {
-		System.out.println(label + Integer.toString(count));
+		System.out.println(toString());
 	}
 	
 	public String getVertex() {
@@ -27,9 +27,18 @@ public class Vertex {
 		return count;
 	}
 	
-	public boolean equals(Vertex a) {
+	public boolean softEquals(Vertex a) {
+		return this.label==a.getLabel();
+	}
+	
+	public boolean hardEquals(Vertex a) {
 		return (this.label == a.getLabel() 
 				&& this.count == a.getCount());
 	}
 
+	@Override
+	public String toString() {
+		return label + Integer.toString(count);
+	}
+	
 }
